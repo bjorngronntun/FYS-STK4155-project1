@@ -3,8 +3,13 @@ def mse(y_true, y_pred):
     error = y_true - y_pred
     error_squared = np.dot(error, error)
     observations = error.shape[0]
-    print('Number of observations:', observations)
     return error_squared/observations
+
+def r_squared(y_true, y_pred):
+    mean = np.mean(y_pred)
+    deviation_from_mean = y_true - mean
+    SST = np.dot(deviation_from_mean, deviation_from_mean)
+    return (1 - mse(y_true, y_pred)/SST)
 
 if __name__ == '__main__':
     y = np.array([2.0, 5.0, 3.0, 4.0])
