@@ -12,7 +12,7 @@ def r_squared(y_true, y_pred):
     mean = np.mean(y_pred)
     deviation_from_mean = y_true - mean
     SST = np.dot(deviation_from_mean, deviation_from_mean)
-    return (1 - mse(y_true, y_pred)/SST)
+    return 1 - (mse(y_true, y_pred)/SST)
 
 
 
