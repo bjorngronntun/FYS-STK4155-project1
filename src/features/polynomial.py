@@ -1,5 +1,7 @@
 import numpy as np
 from itertools import combinations_with_replacement
+import unittest
+
 class PolynomialFeatures:
     def __init__(self, degree):
         self.degree = degree
@@ -18,7 +20,21 @@ class PolynomialFeatures:
 
         return(return_X)
 
+class PolynomialFeaturesTest(unittest.TestCase):
+    def test_one(self):
+        X = np.array([[2, 3]])
+        pf = PolynomialFeatures(2)
+        self.assertEqual([[1, 2, 3, 4, 6, 9]], pf.fit_transform(X).tolist())
+    def test_two(self):
+        X = np.array([[0.5, 2.0], [0.2, 1.1]])
+        pf = PolynomialFeatures(2)
+        expected = [[1.0, 0.5, 2.0, 0.25, 1.0, 4.0], [1.0, 0.2, 1.1, 0.04, 0.22, 1.21]]
+        for i in range(len(expected)):
+            for j in range(len(expected[0])):
+                self.assertAlmostEqual(expected[i][j], (pf.fit_transform(X)).tolist()[i][j])
+
+
+
+
 if __name__ == '__main__':
-    X = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    pf = PolynomialFeatures(2)
-    print(pf.fit_transform(X))
+    unittest.main()
