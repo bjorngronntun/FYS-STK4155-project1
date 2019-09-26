@@ -5,19 +5,25 @@ import unittest
 class PolynomialFeatures:
     def __init__(self, degree):
         self.degree = degree
-    def fit_transform(self, X):
+        self.names = []
+    def fit_transform(self, X, names):
         columns_no = X.shape[1]
         columns = range(columns_no)
         return_X = np.c_[np.ones((X.shape[0], 1)), X]
+        self.names = ['1'] + names
 
         # Make higher-degree features
         for i in range(2, self.degree + 1):
             column_combinations = list(combinations_with_replacement(columns, i))
+            name_combinations = list(combinations_with_replacement(names, i))
 
             for j in column_combinations:
                 new_feature = np.prod(X[:, j], axis=1)
                 return_X = np.c_[return_X, new_feature]
 
+            for j in name_combinations:
+                new_name = '*'.join(j)
+                self.names.append(new_name)
         return(return_X)
 
 class PolynomialFeaturesTest(unittest.TestCase):

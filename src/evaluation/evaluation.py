@@ -1,6 +1,9 @@
 import numpy as np
 import os
 
+def variance_beta(X, y_true, y_pred, beta):
+    variance_y = np.var(y)
+    var_beta = variance_y*(np.linalg.inv(np.dot(X.transpose(), X)))
 
 def mse(y_true, y_pred):
     error = y_true - y_pred
