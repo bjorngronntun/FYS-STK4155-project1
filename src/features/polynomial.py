@@ -22,7 +22,15 @@ class PolynomialFeatures:
                 return_X = np.c_[return_X, new_feature]
 
             for j in name_combinations:
-                new_name = '*'.join(j)
+                new_name = ''
+                values = set(j)
+                for v in values:
+                    instances = j.count(v)
+                    if instances == 1:
+                        new_name += '({})'.format(v)
+                    else:
+                        new_name += '({}^{})'.format(v, instances)
+
                 self.names.append(new_name)
         return(return_X)
 
