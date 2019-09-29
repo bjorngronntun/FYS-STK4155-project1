@@ -5,11 +5,11 @@ class K_fold_splitter:
         self.m = m  # Number of observations
         self.k = k  # Number of folds
 
-    def cross_val_split(self):
+    def cross_val_split(self, seed=5):
         return_values = []
         indices = np.arange(self.m)
         indices2 = indices.copy()
-        np.random.seed(5)
+        np.random.seed(seed)
         np.random.shuffle(indices2)
         indices_by_fold = np.array_split(indices2, self.k)
 
