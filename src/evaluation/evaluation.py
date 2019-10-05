@@ -2,17 +2,49 @@ import numpy as np
 import os
 import unittest
 
-def variance_beta(X, y_true, y_pred, beta):
-    variance_y = np.var(y)
-    var_beta = variance_y*(np.linalg.inv(np.dot(X.transpose(), X)))
-
 def mse(y_true, y_pred):
+    """
+    Compute mean squared error
+
+    Parameters
+    -----------
+    y_true: array-like
+            Ground truth target values
+    y_pred: array-like
+            Predicted target values
+
+    Returns
+    -----------
+    loss:   float
+            Sum of squared differences
+            between y_true and y_pred,
+            measures how close y_true
+            is to y_pred
+    """
     error = y_true - y_pred
     error_squared = np.dot(error, error)
     observations = error.shape[0]
     return error_squared/observations
 
 def r_squared(y_true, y_pred):
+    """
+    Compute r squared (coefficient
+    of determination)
+
+    Parameters
+    -----------
+    y_true: array-like
+            Ground truth target values
+    y_pred: array-like
+            Predicted target values
+
+    Returns
+    -----------
+    z:      float
+            The R^2 score or coefficient
+            of determination. Best possible
+            score is 1
+    """
     error = y_true - y_pred
     error_squared = np.dot(error, error)
     mean = np.mean(y_true)
