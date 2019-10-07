@@ -6,6 +6,17 @@ class K_fold_splitter:
         self.k = k  # Number of folds
 
     def cross_val_split(self, seed=5):
+        """
+        Returns a list of dictionaries, each of the form
+        {
+            "train_indices": ...,
+            "test_indices": ...
+        }
+        Each dictionary contains all indices ranging from
+        0, ..., m - 1, in such a way that there will be no common elements
+        in train and test sets. In the course of the entire list,
+        all elements will have been included in exactly one test set.
+        """
         return_values = []
         indices = np.arange(self.m)
         indices2 = indices.copy()
@@ -22,8 +33,6 @@ class K_fold_splitter:
                 "test_indices": test_indices
             })
         return return_values
-
-
 
 if __name__ == '__main__':
     kf = K_fold_splitter(50, 7)

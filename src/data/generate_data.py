@@ -6,9 +6,9 @@ def FrankeFunction(x, y, noise = 0.0, seed = 8):
 
     Parameters
     ----------
-    x, y:   {float}
+    x, y:   float
             Input data
-    noise:  {float}
+    noise:  float
             Standard deviation of randomly generated
             noise (mean=0) that will be added to the
             output

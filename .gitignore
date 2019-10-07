@@ -12,7 +12,6 @@ reports/report.fdb_latexmk
 reports/report.fls
 reports/report.log
 reports/report.synctex.gz
-reports/report.tex
 src/__pycache__/
 src/data/__pycache__/
 src/features/__pycache__/

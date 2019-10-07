@@ -3,10 +3,38 @@ from itertools import combinations_with_replacement
 import unittest
 
 class PolynomialFeatures:
+    """
+    Generate polynomial features
+    Given input feature matrix, computes interaction terms
+    between columns. If e. g. columns are [x, y] and degree
+    is two, fit_transform methow returns matrix with columns
+    [1 x y x^2 xy y^2].
+
+    Parameters
+    -------------
+    degree:     integer
+                The degree of the desired polynomial features
+                
+    Attributes
+    ---------------
+    names:  list
+            list of column names (strings for output matrix)
+    """
     def __init__(self, degree):
         self.degree = degree
         self.names = []
     def fit_transform(self, X, names):
+        """
+        Transform data to polynomial features
+         Parameters
+         -------------
+         X:     array-like
+                Feature matrix
+         names: list
+                List of column names (strings) for input matrix
+
+
+        """
         columns_no = X.shape[1]
         columns = range(columns_no)
         return_X = np.c_[np.ones((X.shape[0], 1)), X]
